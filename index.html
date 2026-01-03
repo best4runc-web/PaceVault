@@ -5,7 +5,7 @@
   <title>PaceVault – konzistenciou k rýchlosti</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- MODERNÝ FONT – MONTSERRAT -->
+  <!-- FONT – MONTSERRAT -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -273,7 +273,6 @@
       margin-top: 0.6rem;
     }
 
-    /* hero vizuál – logá + slogan */
     .pv-hero-visual {
       position: relative;
       min-height: 260px;
@@ -306,12 +305,6 @@
       height: 30px;
       width: auto;
       display: block;
-    }
-
-    .pv-hero-panel-wordmark {
-      font-size: 1rem;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
     }
 
     .pv-hero-panel-tag {
@@ -398,30 +391,12 @@
 
     .pv-section-body p + p { margin-top: 0.45rem; }
 
-    .pv-photo-placeholder {
+    .pv-photo-wrapper img {
+      width: 100%;
+      height: auto;
       border-radius: 22px;
-      min-height: 200px;
-      background:
-        linear-gradient(135deg,
-          rgba(46,50,51,0.08),
-          rgba(217,212,209,0.5));
-      border: 1px dashed rgba(46,50,51,0.45);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 1.2rem;
-      font-size: 0.8rem;
-      color: rgba(46,50,51,0.8);
-    }
-
-    .pv-photo-placeholder span {
       display: block;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin-bottom: 0.4rem;
-      color: rgba(46,50,51,0.9);
+      box-shadow: 0 10px 30px rgba(11,17,13,0.18);
     }
 
     .pv-footer {
@@ -441,9 +416,7 @@
     }
 
     @media (max-width: 900px) {
-      .pv-hero-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .pv-hero-grid { grid-template-columns: minmax(0, 1fr); }
       .pv-hero-visual { order: -1; }
     }
 
@@ -454,7 +427,6 @@
       .pv-feature-grid--reverse {
         grid-template-columns: minmax(0, 1fr);
       }
-      .pv-photo-placeholder { min-height: 180px; }
     }
   </style>
 </head>
@@ -531,13 +503,9 @@
               <div class="pv-hero-panel-logo">
                 <img src="assets/img/logo/full-logo.png" alt="PaceVault">
               </div>
-              <div class="pv-hero-panel-tag">
-                bež, plánuj, vyberaj
-              </div>
+              <div class="pv-hero-panel-tag">bež, plánuj, vyberaj</div>
             </div>
-            <div class="pv-hero-panel-slogan">
-              konzistenciou k rýchlosti
-            </div>
+            <div class="pv-hero-panel-slogan">konzistenciou k rýchlosti</div>
             <div class="pv-hero-panel-note">
               Jeden vault pre tenisky, tempo, tréningy aj rady.
               Všetko, čo bežec potrebuje, bez scrollovania cez nekonečné fóra.
@@ -562,11 +530,9 @@
             </p>
           </div>
         </div>
-        <div class="pv-photo-placeholder">
-          <div>
-            <span>miesto pre fotku vpick</span>
-            Sem môžeš neskôr vložiť vizuál sprievodcu alebo fotku tenisiek.
-          </div>
+        <div class="pv-photo-wrapper">
+          <img src="assets/img/vpick/vpick-vizu.jpg"
+               alt="Vpick vizuál – sprievodca výberom tenisiek">
         </div>
       </div>
     </section>
@@ -574,11 +540,9 @@
     <!-- Vcalc blok -->
     <section id="vcalc">
       <div class="pv-container pv-feature-grid pv-feature-grid--reverse">
-        <div class="pv-photo-placeholder">
-          <div>
-            <span>miesto pre fotku vcalc</span>
-            Tu môže byť screenshot kalkulačky tempa alebo graf rýchlosti.
-          </div>
+        <div class="pv-photo-wrapper">
+          <img src="assets/img/vcalc/vcalc-vizu.jpg"
+               alt="Vcalc vizuál – bežecké tempo a čas">
         </div>
         <div>
           <div class="pv-section-kicker">Vcalc</div>
@@ -608,11 +572,9 @@
             </p>
           </div>
         </div>
-        <div class="pv-photo-placeholder">
-          <div>
-            <span>miesto pre fotku vtrain</span>
-            Neskôr tu môže byť vizuál tréningového plánu alebo kalendár.
-          </div>
+        <div class="pv-photo-wrapper">
+          <img src="assets/img/vtrain/vtrain-vizu.jpg"
+               alt="Vtrain vizuál – tréningový plán">
         </div>
       </div>
     </section>
@@ -620,11 +582,9 @@
     <!-- Vtips blok -->
     <section id="vtips">
       <div class="pv-container pv-feature-grid pv-feature-grid--reverse">
-        <div class="pv-photo-placeholder">
-          <div>
-            <span>miesto pre fotku vtips</span>
-            Môžeš sem dať foto/ilustráciu tipov – technika, regenerácia, detaily výstroje.
-          </div>
+        <div class="pv-photo-wrapper">
+          <img src="assets/img/vtips/vtips-vizu.jpg"
+               alt="Vtips vizuál – bežecké rady a tipy">
         </div>
         <div>
           <div class="pv-section-kicker">Vtips</div>
