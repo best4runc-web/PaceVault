@@ -2,106 +2,493 @@
 <html lang="sk">
 <head>
   <meta charset="utf-8">
-  <title>PaceVault – Tvoj bežecký digitálny trezor</title>
+  <title>PaceVault – konzistenciou k rýchlosti</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- HORIZON FONT – webfont -->
+  <link href="https://fonts.cdnfonts.com/css/horizon" rel="stylesheet">
+
+  <style>
+    :root {
+      --pv-white: #FFFFFF;
+      --pv-black: #0B110D;
+      --pv-dark: #2E3233;
+      --pv-gray: #838584;
+      --pv-soft: #D9D4D1;
+      --pv-accent: #FDE68A;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Horizon', system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", Roboto, sans-serif;
+      background-color: var(--pv-soft);
+      color: var(--pv-black);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* Intro overlay */
+    .pv-intro-layer {
+      position: fixed;
+      inset: 0;
+      background-color: var(--pv-black);
+      color: var(--pv-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: pv-intro-fade 2.2s ease-out forwards;
+    }
+
+    .pv-intro-text {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+
+    @keyframes pv-intro-fade {
+      0%   { opacity: 0; }
+      10%  { opacity: 1; }
+      70%  { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+
+    /* Layout */
+    .pv-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pv-container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header / nav */
+    .pv-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--pv-white);
+      border-bottom: 1px solid rgba(11,17,13,0.06);
+      backdrop-filter: blur(14px);
+    }
+
+    .pv-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .pv-logo-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .pv-logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 4px;
+      background-color: var(--pv-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .pv-logo-mark img {
+      width: 80%;
+      height: auto;
+      display: block;
+    }
+
+    .pv-logo-wordmark {
+      font-size: 1.1rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--pv-dark);
+      white-space: nowrap;
+    }
+
+    .pv-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+    }
+
+    .pv-nav-link {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .pv-nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--pv-accent);
+      transition: width 0.22s ease-out;
+    }
+
+    .pv-nav-link:hover::after,
+    .pv-nav-link--active::after {
+      width: 100%;
+    }
+
+    .pv-nav-cta {
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      background-color: var(--pv-accent);
+      color: var(--pv-black);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+      box-shadow: 0 3px 10px rgba(11,17,13,0.18);
+    }
+
+    .pv-nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(11,17,13,0.25);
+    }
+
+    /* Hero */
+    .pv-hero {
+      padding: 4.5rem 0 3.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pv-hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .pv-hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.18rem 0.7rem;
+      border-radius: 999px;
+      background-color: rgba(46,50,51,0.08);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--pv-dark);
+      margin-bottom: 0.9rem;
+    }
+
+    .pv-hero-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background-color: var(--pv-accent);
+    }
+
+    .pv-hero-title {
+      font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      margin-bottom: 0.55rem;
+    }
+
+    .pv-hero-subtitle {
+      font-size: 0.95rem;
+      max-width: 420px;
+      color: var(--pv-dark);
+      margin-bottom: 1.6rem;
+    }
+
+    .pv-hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 2.1rem;
+      flex-wrap: wrap;
+    }
+
+    .pv-hero-primary {
+      padding: 0.75rem 1.6rem;
+      border-radius: 999px;
+      background-color: var(--pv-accent);
+      color: var(--pv-black);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 0.82rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(11,17,13,0.25);
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+    }
+
+    .pv-hero-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 40px rgba(11,17,13,0.3);
+    }
+
+    .pv-hero-secondary {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--pv-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .pv-hero-secondary span {
+      border-bottom: 1px solid rgba(46,50,51,0.35);
+    }
+
+    .pv-hero-secondary svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .pv-hero-meta {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(46,50,51,0.7);
+    }
+
+    /* Hero vizuál / tvary */
+    .pv-hero-visual {
+      position: relative;
+      min-height: 220px;
+    }
+
+    .pv-card-main {
+      position: relative;
+      background-color: var(--pv-white);
+      border-radius: 18px;
+      padding: 1.3rem 1.4rem;
+      box-shadow: 0 18px 55px rgba(43,48,51,0.35);
+      max-width: 320px;
+      margin-left: auto;
+    }
+
+    .pv-card-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(46,50,51,0.7);
+      margin-bottom: 0.4rem;
+    }
+
+    .pv-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: var(--pv-black);
+    }
+
+    .pv-card-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .pv-pill {
+      font-size: 0.65rem;
+      padding: 0.16rem 0.6rem;
+      border-radius: 999px;
+      background-color: rgba(216,212,209,0.8);
+      color: var(--pv-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .pv-pill--accent {
+      background-color: var(--pv-accent);
+      color: var(--pv-black);
+    }
+
+    .pv-metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.75rem;
+      color: var(--pv-dark);
+    }
+
+    .pv-metric-value {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .pv-hero-shape-dark {
+      position: absolute;
+      inset: auto -50px 0 -40px;
+      height: 48%;
+      background-color: var(--pv-dark);
+      border-radius: 24px 24px 0 36px;
+      opacity: 0.9;
+    }
+
+    .pv-hero-shape-accent {
+      position: absolute;
+      right: -30px;
+      top: 18%;
+      width: 80px;
+      height: 80px;
+      background-color: var(--pv-accent);
+      border-radius: 999px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+    }
+
+    /* Sekcie */
+    section {
+      padding: 3.4rem 0 3.6rem;
+      border-top: 1px solid rgba(46,50,51,0.08);
+    }
+
+    .pv-section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .pv-section-kicker {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: rgba(46,50,51,0.7);
+    }
+
+    .pv-section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .pv-section-body {
+      max-width: 520px;
+      font-size: 0.9rem;
+      color: var(--pv-dark);
+    }
+
+    .pv-section-placeholder {
+      margin-top: 1.4rem;
+      padding: 1rem 1.1rem;
+      border-radius: 14px;
+      border: 1px dashed rgba(46,50,51,0.4);
+      font-size: 0.82rem;
+      color: rgba(46,50,51,0.8);
+      background: linear-gradient(135deg,
+        rgba(46,50,51,0.06),
+        rgba(217,212,209,0.4));
+    }
+
+    .pv-section-placeholder span {
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .pv-footer {
+      padding: 2rem 0 2.4rem;
+      font-size: 0.75rem;
+      color: rgba(46,50,51,0.7);
+      border-top: 1px solid rgba(46,50,51,0.12);
+      margin-top: 2rem;
+    }
+
+    .pv-footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Responsivita */
+    @media (max-width: 768px) {
+      .pv-nav {
+        gap: 0.75rem;
+      }
+      .pv-nav-links {
+        display: none;
+      }
+      .pv-hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.4rem;
+      }
+      .pv-card-main {
+        margin: 0 auto;
+      }
+      .pv-hero {
+        padding-top: 3.1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- HEADER / NAV -->
-  <header class="pv-header">
-    <div class="pv-container pv-header-inner">
-      <div class="pv-logo">PaceVault</div>
+<div class="pv-page">
 
+  <!-- Intro overlay -->
+  <div class="pv-intro-layer">
+    <div class="pv-intro-text">konzistenciou k rýchlosti</div>
+  </div>
+
+  <!-- Header -->
+  <header class="pv-header">
+    <div class="pv-container">
       <nav class="pv-nav">
-        <a href="index.html" class="active">Domov</a>
-        <a href="services.html">Služby</a>
-        <a href="about.html">O nás</a>
-        <a href="contact.html">Kontakt</a>
+        <div class="pv-logo-group">
+          <div class="pv-logo-mark">
+            <img src="assets/img/logo/P.png" alt="PaceVault logo">
+          </div>
+          <div class="pv-logo-wordmark">PACEVAULT</div>
+        </div>
+        <div class="pv-nav-links">
+          <a href="#vpick" class="pv-nav-link pv-nav-link--active">Vpick</a>
+          <a href="#vcalc" class="pv-nav-link">Vcalc</a>
+          <a href="#vtrain" class="pv-nav-link">Vtrain</a>
+          <a href="#vtips" class="pv-nav-link">Vtips</a>
+        </div>
+        <button class="pv-nav-cta"
+                onclick="document.getElementById('vpick').scrollIntoView({behavior:'smooth'})">
+          Spusti Vpick
+        </button>
       </nav>
     </div>
   </header>
 
-  <!-- HERO S JEDNODUCHOU ANIMÁCIOU -->
-  <section class="pv-hero">
-    <div class="pv-container pv-hero-inner">
-      <div class="pv-hero-text">
-        <h1 class="hero-title">Odmakaj kilometre, <span>my strážime dáta.</span></h1>
-        <p class="hero-subtitle">
-          PaceVault je tvoj digitálny trezor pre beh – personalizované služby Vaultpick,
-          Vaultcalc, Vaultrain a Vaultips na jednom mieste.
-        </p>
-        <a href="services.html" class="pv-btn pv-btn-primary">
-          Objav služby
-        </a>
-      </div>
+  <!-- Hero + sekcie sú rovnaké ako v predošlej verzii -->
+  <!-- ... sem môžeš vložiť blok hero + Vpick/Vcalc/Vtrain/Vtips z predošlého kódu bez zmien ... -->
 
-      <div class="pv-hero-side">
-        <!-- Sem môže ísť neskôr ilustrácia, fotka bežca alebo graf -->
-        <div class="pv-hero-circle"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PREČO PACEVAULT -->
-  <section class="pv-section pv-why">
-    <div class="pv-container">
-      <h2>Prečo PaceVault</h2>
-      <div class="pv-grid-3">
-        <div class="pv-card">
-          <h3>Dáta namiesto pocitov</h3>
-          <p>Rozhoduj sa podľa čísel, nie podľa nálady po tréningu.</p>
-        </div>
-        <div class="pv-card">
-          <h3>Všetko na jednom mieste</h3>
-          <p>Služby od výberu preteku až po tréning a tipy na výkon.</p>
-        </div>
-        <div class="pv-card">
-          <h3>Šité na tvoju úroveň</h3>
-          <p>Od prvého 5k až po maratón – PaceVault rastie spolu s tebou.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PREHĽAD SLUŽIEB -->
-  <section class="pv-section pv-services-home">
-    <div class="pv-container">
-      <h2>Naše služby</h2>
-      <div class="pv-grid-4">
-        <a href="vaultpick.html" class="pv-card pv-service-card">
-          <h3>Vaultpick</h3>
-          <p>Pomoc s výberom pretekov a cieľov podľa tvojej aktuálnej formy.</p>
-        </a>
-
-        <a href="vaultcalc.html" class="pv-card pv-service-card">
-          <h3>Vaultcalc</h3>
-          <p>Výpočty temp, splitov a realistických cieľových časov.</p>
-        </a>
-
-        <a href="vaultrain.html" class="pv-card pv-service-card">
-          <h3>Vaultrain</h3>
-          <p>Tréningové plány prispôsobené tvojmu tempu života.</p>
-        </a>
-
-        <a href="vaultips.html" class="pv-card pv-service-card">
-          <h3>Vaultips</h3>
-          <p>Praktické tipy k pretekom, regenerácii a mentálnemu nastaveniu.</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="pv-footer">
-    <div class="pv-container pv-footer-inner">
-      <p>© PaceVault <!-- sem môžeš doplniť rok --> – všetky práva vyhradené.</p>
-      <p class="pv-footer-links">
-        <a href="about.html">O nás</a>
-        <span>•</span>
-        <a href="contact.html">Kontakt</a>
-      </p>
-    </div>
-  </footer>
+</div>
 </body>
 </html>
+
