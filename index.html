@@ -5,8 +5,8 @@
   <title>PaceVault – konzistenciou k rýchlosti</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- HORIZON FONT (web) -->
-  <link href="https://fonts.cdnfonts.com/css/horizon" rel="stylesheet">
+  <!-- MODERNÝ FONT – MONTSERRAT -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -21,7 +21,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Horizon', system-ui, -apple-system, BlinkMacSystemFont,
+      font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont,
                    "Segoe UI", Roboto, sans-serif;
       background-color: var(--pv-soft);
       color: var(--pv-black);
@@ -45,7 +45,7 @@
 
     .pv-intro-text {
       font-size: clamp(1.6rem, 4vw, 2.4rem);
-      letter-spacing: 0.24em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       text-align: center;
       padding: 0 1.5rem;
@@ -58,7 +58,6 @@
       100% { opacity: 0; visibility: hidden; }
     }
 
-    /* Layout */
     .pv-page {
       min-height: 100vh;
       display: flex;
@@ -113,7 +112,7 @@
     }
 
     .pv-logo-wordmark {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       letter-spacing: 0.32em;
       text-transform: uppercase;
       font-weight: 600;
@@ -125,9 +124,9 @@
       display: flex;
       align-items: center;
       gap: 1.25rem;
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       text-transform: uppercase;
-      letter-spacing: 0.24em;
+      letter-spacing: 0.22em;
     }
 
     .pv-nav-link {
@@ -154,9 +153,9 @@
       border-radius: 999px;
       background-color: var(--pv-accent);
       color: var(--pv-black);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       border: none;
       cursor: pointer;
@@ -169,7 +168,7 @@
       box-shadow: 0 6px 18px rgba(11,17,13,0.25);
     }
 
-    /* HERO – titulná strana */
+    /* HERO */
     .pv-hero {
       padding: 4.5rem 0 3.25rem;
       position: relative;
@@ -190,9 +189,9 @@
       padding: 0.18rem 0.7rem;
       border-radius: 999px;
       background-color: rgba(46,50,51,0.08);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.18em;
       color: var(--pv-dark);
       margin-bottom: 0.9rem;
     }
@@ -207,7 +206,7 @@
     .pv-hero-title {
       font-size: clamp(1.9rem, 3.4vw, 2.6rem);
       font-weight: 700;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       margin-bottom: 0.55rem;
     }
@@ -234,8 +233,8 @@
       color: var(--pv-black);
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.24em;
-      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      font-size: 0.8rem;
       border: none;
       cursor: pointer;
       box-shadow: 0 10px 30px rgba(11,17,13,0.25);
@@ -250,7 +249,7 @@
     .pv-hero-secondary {
       font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.16em;
       color: var(--pv-dark);
       display: inline-flex;
       align-items: center;
@@ -269,7 +268,7 @@
     .pv-hero-meta {
       font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.16em;
       color: rgba(46,50,51,0.7);
       margin-top: 0.6rem;
     }
@@ -311,13 +310,13 @@
 
     .pv-hero-panel-wordmark {
       font-size: 1rem;
-      letter-spacing: 0.32em;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
     }
 
     .pv-hero-panel-tag {
       font-size: 0.65rem;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       padding: 0.22rem 0.7rem;
       border-radius: 999px;
@@ -326,7 +325,7 @@
 
     .pv-hero-panel-slogan {
       font-size: 0.9rem;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       margin-bottom: 0.9rem;
     }
@@ -378,15 +377,15 @@
     .pv-section-kicker {
       font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.24em;
+      letter-spacing: 0.18em;
       color: rgba(46,50,51,0.7);
       margin-bottom: 0.35rem;
     }
 
     .pv-section-title {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 600;
-      letter-spacing: 0.26em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       margin-bottom: 0.6rem;
     }
@@ -397,9 +396,7 @@
       max-width: 520px;
     }
 
-    .pv-section-body p + p {
-      margin-top: 0.45rem;
-    }
+    .pv-section-body p + p { margin-top: 0.45rem; }
 
     .pv-photo-placeholder {
       border-radius: 22px;
@@ -422,12 +419,11 @@
       display: block;
       font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       margin-bottom: 0.4rem;
       color: rgba(46,50,51,0.9);
     }
 
-    /* Footer */
     .pv-footer {
       padding: 2rem 0 2.4rem;
       font-size: 0.75rem;
@@ -444,26 +440,21 @@
       flex-wrap: wrap;
     }
 
-    /* Responsivita */
     @media (max-width: 900px) {
       .pv-hero-grid {
         grid-template-columns: minmax(0, 1fr);
       }
-      .pv-hero-visual {
-        order: -1;
-      }
+      .pv-hero-visual { order: -1; }
     }
 
     @media (max-width: 768px) {
-      .pv-nav-links { display: none; } /* mobilné menu dorobíme neskôr */
+      .pv-nav-links { display: none; }
       .pv-hero { padding-top: 3.1rem; }
       .pv-feature-grid,
       .pv-feature-grid--reverse {
         grid-template-columns: minmax(0, 1fr);
       }
-      .pv-photo-placeholder {
-        min-height: 180px;
-      }
+      .pv-photo-placeholder { min-height: 180px; }
     }
   </style>
 </head>
@@ -481,7 +472,6 @@
       <nav class="pv-nav">
         <div class="pv-logo-group">
           <div class="pv-logo-mark">
-            <!-- sem daj ikonu P -->
             <img src="assets/img/logo/P.png" alt="PaceVault logo">
           </div>
           <div class="pv-logo-wordmark">PACEVAULT</div>
@@ -511,7 +501,7 @@
           </div>
           <h1 class="pv-hero-title">všetko čo bežec potrebuje na jednom mieste</h1>
           <p class="pv-hero-subtitle">
-            Vpick ťa dovedie k správnym teniskám, Vcalc ti prepočítá tempo, Vtrain postaví tréning
+            Vpick ťa dovedie k správnym teniskám, Vcalc ti prepočíta tempo, Vtrain postaví tréning
             a Vtips ti pripomenú len to, čo sa na trati naozaj ráta.
           </p>
 
@@ -539,7 +529,6 @@
           <div class="pv-hero-panel">
             <div class="pv-hero-panel-top">
               <div class="pv-hero-panel-logo">
-                <!-- celé logo, ak ho máš ako obrázok -->
                 <img src="assets/img/logo/full-logo.png" alt="PaceVault">
               </div>
               <div class="pv-hero-panel-tag">
@@ -550,7 +539,7 @@
               konzistenciou k rýchlosti
             </div>
             <div class="pv-hero-panel-note">
-              Jeden vault pre tenisky, tempo, tréningy aj rady.  
+              Jeden vault pre tenisky, tempo, tréningy aj rady.
               Všetko, čo bežec potrebuje, bez scrollovania cez nekonečné fóra.
             </div>
           </div>
@@ -566,9 +555,7 @@
           <div class="pv-section-kicker">Vpick</div>
           <h2 class="pv-section-title">vyber si tenisky</h2>
           <div class="pv-section-body">
-            <p>
-              Služba, ktorá z chaosu tenisiek spraví jasný výber pre tvoje nohy.​
-            </p>
+            <p>Služba, ktorá z chaosu tenisiek spraví jasný výber pre tvoje nohy.​</p>
             <p>
               Vpick sa ťa spýta pár vecí o povrchu, tempe a pocite z behu a na konci ti
               ukáže len tie modely, ktoré dávajú zmysel pre tvoj spôsob behania.
@@ -578,8 +565,7 @@
         <div class="pv-photo-placeholder">
           <div>
             <span>miesto pre fotku vpick</span>
-            Sem môžeš neskôr vložiť vizuál sprievodcu alebo fotku tenisiek, ktoré sa zobrazia
-            po filtrovaní.
+            Sem môžeš neskôr vložiť vizuál sprievodcu alebo fotku tenisiek.
           </div>
         </div>
       </div>
@@ -591,20 +577,17 @@
         <div class="pv-photo-placeholder">
           <div>
             <span>miesto pre fotku vcalc</span>
-            Tu môže byť screenshot kalkulačky tempa alebo graf rýchlosti, ktorý doplníš neskôr.
+            Tu môže byť screenshot kalkulačky tempa alebo graf rýchlosti.
           </div>
         </div>
         <div>
           <div class="pv-section-kicker">Vcalc</div>
           <h2 class="pv-section-title">prepočítaj svoje tempo</h2>
           <div class="pv-section-body">
-            <p>
-              Miesto, kde sa tvoje bežecké sny premenia na konkrétne tempo a časy.​
-            </p>
+            <p>Miesto, kde sa tvoje bežecké sny premenia na konkrétne tempo a časy.​</p>
             <p>
               Zadaj vzdialenosť, čas alebo cieľové tempo a Vcalc ti ukáže, ako rýchlo musíš
-              bežať, aby si sa dostal tam, kam chceš – či už je to prvá päťka, polmaratón
-              alebo osobák na desiatku.
+              bežať, aby si sa dostal tam, kam chceš – od prvej päťky po osobák.
             </p>
           </div>
         </div>
@@ -618,9 +601,7 @@
           <div class="pv-section-kicker">Vtrain</div>
           <h2 class="pv-section-title">plánuj tréningy</h2>
           <div class="pv-section-body">
-            <p>
-              Tvoj nápadník tréningov, ktorý ťa posunie z “len behám” na “viem, prečo behám”.​
-            </p>
+            <p>Tvoj nápadník tréningov, ktorý ťa posunie z “len behám” na “viem, prečo behám”.​</p>
             <p>
               Vtrain ti zoradí tréningy podľa cieľa – od pohodových základov až po špecifickú
               prípravu pred pretekom – a udrží ťa v línii bez zbytočného prepalovania.
@@ -630,7 +611,7 @@
         <div class="pv-photo-placeholder">
           <div>
             <span>miesto pre fotku vtrain</span>
-            Neskôr tu môže byť vizuál tréningového plánu alebo ilustračný kalendár.
+            Neskôr tu môže byť vizuál tréningového plánu alebo kalendár.
           </div>
         </div>
       </div>
@@ -642,17 +623,14 @@
         <div class="pv-photo-placeholder">
           <div>
             <span>miesto pre fotku vtips</span>
-            Sem sa hodí foto/ilustrácia tipov – napríklad detail tenisky, techniky došľapu
-            alebo regenerácie.
+            Môžeš sem dať foto/ilustráciu tipov – technika, regenerácia, detaily výstroje.
           </div>
         </div>
         <div>
           <div class="pv-section-kicker">Vtips</div>
           <h2 class="pv-section-title">vezmi si len to podstatné</h2>
           <div class="pv-section-body">
-            <p>
-              Krátke, úderné rady, ktoré ti pri behu ušetria sily, nervy aj čas.​
-            </p>
+            <p>Krátke, úderné rady, ktoré ti pri behu ušetria sily, nervy aj čas.​</p>
             <p>
               Žiadne dlhé romány – len konkrétne tipy, ktoré vieš aplikovať už na ďalšom
               tréningu: od rozklusu a techniky až po regeneráciu a výber povrchu.
@@ -663,13 +641,13 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="pv-footer">
     <div class="pv-container pv-footer-row">
       <div>© PaceVault – konzistenciou k rýchlosti</div>
       <div>Všetko, čo bežec potrebuje, na jednom mieste.</div>
     </div>
   </footer>
+
 </div>
 </body>
 </html>
