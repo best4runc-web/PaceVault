@@ -1,0 +1,275 @@
+/* RESET / ZÁKLAD */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #0f172a;
+  background: #0b1020;
+}
+
+/* LAYOUT */
+.pv-container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* HEADER */
+.pv-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+  background: rgba(11, 16, 32, 0.9);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.pv-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+}
+
+.pv-logo {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e5e7eb;
+}
+
+/* NAV */
+.pv-nav a {
+  margin-left: 1.25rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #cbd5f5;
+  transition: color 0.2s ease;
+}
+
+.pv-nav a:hover,
+.pv-nav a.active {
+  color: #38bdf8;
+}
+
+/* HERO SEKCIA S ANIMÁCIOU */
+.pv-hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  background: radial-gradient(circle at top left, #0f172a, #020617);
+  color: #e5e7eb;
+  padding: 2.5rem 0 3.5rem;
+}
+
+.pv-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+/* Text nabeháva zospodu */
+.pv-hero-text {
+  animation: heroFadeUp 0.9s ease-out forwards;
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 3vw + 1.2rem, 3.2rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.hero-title span {
+  color: #38bdf8;
+}
+
+.hero-subtitle {
+  max-width: 32rem;
+  margin-bottom: 1.5rem;
+  color: #cbd5f5;
+}
+
+/* Tlačidlo jemne pulzuje */
+.pv-btn {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.pv-btn-primary {
+  background: linear-gradient(135deg, #38bdf8, #22c55e);
+  color: #020617;
+  box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.5);
+  animation: pulseGlow 1.8s ease-out infinite;
+}
+
+/* Jednoduchý „digitálny“ kruh ako vizuál */
+.pv-hero-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pv-hero-circle {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 20%, #38bdf8, #22c55e 40%, transparent 70%);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow:
+    0 0 40px rgba(56, 189, 248, 0.6),
+    0 0 80px rgba(34, 197, 94, 0.4);
+  animation: floatY 4s ease-in-out infinite;
+}
+
+/* SEKCIE */
+.pv-section {
+  padding: 3.5rem 0;
+  background: #020617;
+  color: #e5e7eb;
+}
+
+.pv-section:nth-of-type(even) {
+  background: #020819;
+}
+
+.pv-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+/* GRID */
+.pv-grid-3,
+.pv-grid-4 {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.pv-grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.pv-grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* KARTY */
+.pv-card {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 1rem;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.8);
+}
+
+.pv-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.pv-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #cbd5f5;
+}
+
+.pv-service-card {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.pv-service-card:hover {
+  transform: translateY(-4px);
+  border-color: #38bdf8;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.95);
+}
+
+/* FOOTER */
+.pv-footer {
+  border-top: 1px solid rgba(148, 163, 184, 0.3);
+  background: #020617;
+  color: #9ca3af;
+  padding: 1.5rem 0;
+}
+
+.pv-footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.pv-footer-links a {
+  color: #cbd5f5;
+  text-decoration: none;
+  margin: 0 0.3rem;
+}
+
+.pv-footer-links a:hover {
+  color: #38bdf8;
+}
+
+/* ANIMÁCIE */
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.6);
+    transform: translateY(0);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(56, 189, 248, 0);
+    transform: translateY(-1px);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .pv-hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .pv-hero-side {
+    order: -1;
+    margin-bottom: 1.5rem;
+  }
+
+  .pv-nav a {
+    margin-left: 0.75rem;
+    font-size: 0.85rem;
+  }
+}
