@@ -174,43 +174,7 @@
       box-shadow: 0 6px 18px rgba(11,17,13,0.25);
     }
 
-    /* Slideshow */
-    .pv-slideshow-shell {
-      background-color: var(--pv-soft);
-      box-shadow: 0 18px 40px rgba(11,17,13,0.18);
-      position: relative;
-      z-index: 1;
-    }
-
-    .pv-slideshow {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 1.6rem 1.5rem 2.4rem;
-    }
-
-    .pv-slideshow-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 1.2rem;
-      gap: 1rem;
-    }
-
-    .pv-slideshow-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: rgba(46,50,51,0.7);
-    }
-
-    .pv-slideshow-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--pv-dark);
-    }
-
+    /* Slideshow – použijeme aj v hero */
     .pv-slides {
       position: relative;
       overflow: hidden;
@@ -232,8 +196,9 @@
 
     .pv-slide img {
       width: 100%;
-      height: 260px;
-      object-fit: cover;
+      height: 100%;
+      max-height: 509px; /* 1080×509 pomer – nech sa nepretiahne viac */
+      object-fit: cover; /* vyplní box, zachová pomer strán */ [web:233][web:239]
       display: block;
     }
 
@@ -250,6 +215,7 @@
       border-radius: 999px;
       background-color: rgba(46,50,51,0.25);
       transition: background-color 0.18s ease-out, transform 0.18s ease-out;
+      cursor: pointer;
     }
 
     .pv-dot--active {
@@ -272,7 +238,7 @@
 
     .pv-hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr); /* viac miesta pre slideshow */ [web:234]
       gap: 3rem;
       align-items: center;
     }
@@ -377,9 +343,12 @@
       position: relative;
       background-color: var(--pv-dark);
       border-radius: 24px;
-      padding: 1.8rem 1.7rem;
+      padding: 1.4rem 1.4rem 1.2rem;
       color: var(--pv-white);
       box-shadow: 0 20px 55px rgba(43,48,51,0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
     }
 
     .pv-hero-panel-top {
@@ -387,13 +356,6 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .pv-hero-panel-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
     }
 
     .pv-hero-panel-logo img {
@@ -412,15 +374,9 @@
     }
 
     .pv-hero-panel-slogan {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      margin-bottom: 0.9rem;
-    }
-
-    .pv-hero-panel-note {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.7);
     }
 
     .pv-hero-shape-accent {
@@ -443,6 +399,20 @@
       background-color: var(--pv-dark);
       opacity: 0.4;
       border-radius: 18px;
+    }
+
+    /* slideshow v paneli */
+    .pv-hero-slides-wrapper {
+      margin-top: 0.4rem;
+    }
+
+    .pv-hero-slides {
+      height: 260px; /* pri šírke ~520px dáva pomer blízky 1080×509 */
+    }
+
+    .pv-hero-dots {
+      justify-content: flex-end;
+      margin-top: 0.6rem;
     }
 
     section {
@@ -513,6 +483,7 @@
     @media (max-width: 900px) {
       .pv-hero-grid { grid-template-columns: minmax(0, 1fr); }
       .pv-hero-visual { order: -1; }
+      .pv-hero-slides { height: 220px; }
     }
 
     @media (max-width: 768px) {
@@ -522,7 +493,6 @@
       .pv-feature-grid--reverse {
         grid-template-columns: minmax(0, 1fr);
       }
-      .pv-slide img { height: 210px; }
     }
   </style>
 </head>
@@ -556,48 +526,7 @@
     </div>
   </header>
 
-  <!-- Slideshow 6 fotiek (PNG) -->
-  <div class="pv-slideshow-shell">
-    <section class="pv-slideshow" aria-label="PaceVault tenisky">
-      <div class="pv-slideshow-header">
-        <div class="pv-slideshow-label">pacevault</div>
-        <div class="pv-slideshow-title">
-          Different pace, same goal – be better
-        </div>
-      </div>
-
-      <div class="pv-slides">
-        <div class="pv-slide pv-slide--active">
-          <img src="./assets/img/hero/slide-1.png" alt="Bežecká teniska 1">
-        </div>
-        <div class="pv-slide">
-          <img src="./assets/img/hero/slide-2.png" alt="Bežecká teniska 2">
-        </div>
-        <div class="pv-slide">
-          <img src="./assets/img/hero/slide-3.png" alt="Bežecká teniska 3">
-        </div>
-        <div class="pv-slide">
-          <img src="./assets/img/hero/slide-4.png" alt="Bežecká teniska 4">
-        </div>
-        <div class="pv-slide">
-          <img src="./assets/img/hero/slide-5.png" alt="Bežecká teniska 5">
-        </div>
-        <div class="pv-slide">
-          <img src="./assets/img/hero/slide-6.png" alt="Bežecká teniska 6">
-        </div>
-      </div>
-
-      <div class="pv-slideshow-dots">
-        <span class="pv-dot pv-dot--active"></span>
-        <span class="pv-dot"></span>
-        <span class="pv-dot"></span>
-        <span class="pv-dot"></span>
-        <span class="pv-dot"></span>
-        <span class="pv-dot"></span>
-      </div>
-    </section>
-  </div>
-
+  <!-- HERO so slideshow vedľa nadpisu -->
   <div class="pv-hero-shell">
     <section class="pv-hero" id="top">
       <div class="pv-container pv-hero-grid">
@@ -640,12 +569,41 @@
               </div>
               <div class="pv-hero-panel-tag">Vpick • Vcalc • Vtrain • Vtips</div>
             </div>
+
             <div class="pv-hero-panel-slogan">
               Different pace, same goal – be better
             </div>
-            <div class="pv-hero-panel-note">
-              Jeden vault pre tenisky, tempo, tréningy aj rady – stavaný okolo Vpick sprievodcu,
-              ktorý ťa zoberie od prvého kliknutia až po predstavenie konkrétneho modelu.
+
+            <div class="pv-hero-slides-wrapper">
+              <div class="pv-slides pv-hero-slides">
+                <div class="pv-slide pv-slide--active">
+                  <img src="./assets/img/hero/slide-1.png" alt="Bežecká teniska 1">
+                </div>
+                <div class="pv-slide">
+                  <img src="./assets/img/hero/slide-2.png" alt="Bežecká teniska 2">
+                </div>
+                <div class="pv-slide">
+                  <img src="./assets/img/hero/slide-3.png" alt="Bežecká teniska 3">
+                </div>
+                <div class="pv-slide">
+                  <img src="./assets/img/hero/slide-4.png" alt="Bežecká teniska 4">
+                </div>
+                <div class="pv-slide">
+                  <img src="./assets/img/hero/slide-5.png" alt="Bežecká teniska 5">
+                </div>
+                <div class="pv-slide">
+                  <img src="./assets/img/hero/slide-6.png" alt="Bežecká teniska 6">
+                </div>
+              </div>
+
+              <div class="pv-slideshow-dots pv-hero-dots">
+                <span class="pv-dot pv-dot--active"></span>
+                <span class="pv-dot"></span>
+                <span class="pv-dot"></span>
+                <span class="pv-dot"></span>
+                <span class="pv-dot"></span>
+                <span class="pv-dot"></span>
+              </div>
             </div>
           </div>
           <div class="pv-hero-shape-accent"></div>
@@ -654,105 +612,15 @@
     </section>
   </div>
 
-  <main>
-    <section id="vpick">
-      <div class="pv-container pv-feature-grid">
-        <div>
-          <div class="pv-section-kicker">Vpick</div>
-          <h2 class="pv-section-title">vyber si tenisky</h2>
-          <div class="pv-section-body">
-            <p>Služba, ktorá z chaosu tenisiek spraví jasný výber pre tvoje nohy.​</p>
-            <p>
-              Tá pravá teniska na pár klikov z&nbsp;pohodlia domova. Vpick ťa prevedie otázkami
-              a na konci ti ukáže len tie modely, ktoré dávajú zmysel pre tvoje tempo a ciele.
-            </p>
-          </div>
-        </div>
-        <div class="pv-photo-wrapper">
-          <img src="./assets/img/vpick/vpick-vizu.png"
-               alt="Vpick vizuál – sprievodca výberom tenisiek">
-        </div>
-      </div>
-    </section>
+  <!-- Zvyšok tvojho HTML (Vpick, Vcalc, Vtrain, Vtips, footer) vlož sem presne tak, ako ho už máš -->
 
-    <section id="vcalc">
-      <div class="pv-container pv-feature-grid pv-feature-grid--reverse">
-        <div class="pv-photo-wrapper">
-          <img src="./assets/img/vcalc/vcalc-vizu.png"
-               alt="Vcalc vizuál – bežecké tempo a čas">
-        </div>
-        <div>
-          <div class="pv-section-kicker">Vcalc</div>
-          <h2 class="pv-section-title">prepočítaj svoje tempo</h2>
-          <div class="pv-section-body">
-            <p>
-              Kalkulačka, ktorá dá tvojmu behu jasné čísla – bez zbytočného počítania v hlave.
-            </p>
-            <p>
-              Zadaj vzdialenosť, čas alebo tempo a Vcalc ti okamžite ukáže, ako rýchlo potrebuješ bežať,
-              aby si sa zmestil do svojho cieľa – od prvého tréningu až po ostrý pretek.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="vtrain">
-      <div class="pv-container pv-feature-grid">
-        <div>
-          <div class="pv-section-kicker">Vtrain</div>
-          <h2 class="pv-section-title">plánuj tréningy</h2>
-          <div class="pv-section-body">
-            <p>
-              Galéria tréningového umenia, ktorá ti rozbije stereotyp a&nbsp;spestrí každý týždeň behania.
-            </p>
-            <p>
-              Vtrain ti vyskladá tréningy tak, aby sa striedala intenzita, objem aj regenerácia –
-              od ľahkých behov až po svižné úseky, ktoré ťa posunú bez toho, aby si sa odpálil.
-            </p>
-          </div>
-        </div>
-        <div class="pv-photo-wrapper">
-          <img src="./assets/img/vtrain/vtrain-vizu.png"
-               alt="Vtrain vizuál – tréningový plán">
-        </div>
-      </div>
-    </section>
-
-    <section id="vtips">
-      <div class="pv-container pv-feature-grid pv-feature-grid--reverse">
-        <div class="pv-photo-wrapper">
-          <img src="./assets/img/vtips/vtips-vizu.png"
-               alt="Vtips vizuál – bežecké rady a tipy">
-        </div>
-        <div>
-          <div class="pv-section-kicker">Vtips</div>
-          <h2 class="pv-section-title">vezmi si len to podstatné</h2>
-          <div class="pv-section-body">
-            <p>Krátke, úderné rady, ktoré ti pri behu ušetria sily, nervy aj čas.​</p>
-            <p>
-              Žiadne dlhé romány – len konkrétne tipy, ktoré vieš aplikovať už na ďalšom
-              tréningu: od rozklusu a techniky až po regeneráciu a výber povrchu.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="pv-footer">
-    <div class="pv-container pv-footer-row">
-      <div>© PaceVault – Different pace, same goal – be better</div>
-      <div>Všetko, čo bežec potrebuje, na jednom mieste.</div>
-    </div>
-  </footer>
 </div>
 
 <script>
   (function () {
     const slides = document.querySelectorAll('.pv-slide');
     const dots = document.querySelectorAll('.pv-dot');
-    if (!slides.length) return;
+    if (!slides.length || !dots.length) return; [web:219]
 
     let index = 0;
 
@@ -764,6 +632,13 @@
         d.classList.toggle('pv-dot--active', idx === i);
       });
     }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        index = idx;
+        showSlide(index);
+      });
+    });
 
     setInterval(() => {
       index = (index + 1) % slides.length;
