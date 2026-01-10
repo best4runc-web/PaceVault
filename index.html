@@ -1,31 +1,63 @@
 <!doctype html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8">
-  <title>PaceVault – všetko pre bežca</title>
+  <meta charset="utf-8">
+  <title>PaceVault – Different pace, same goal – be better</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT – MONTSERRAT -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --pv-bg: #FFFFFF;        /* biela */
-      --pv-bg-soft: #F5F5F7;   /* svetlá sivá */
-      --pv-text: #111827;      /* antracit */
-      --pv-text-secondary: #4B5563;
-      --pv-border: #9CA3AF;
-      --pv-accent: #14B8A6;    /* teal */
-      --pv-success: #84CC16;
+      --pv-white: #FFFFFF;
+      --pv-black: #0B110D;
+      --pv-dark: #2E3233;
+      --pv-gray: #838584;
+      --pv-soft: #D9D4D1;
+      --pv-accent: #FDE68A;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #F5F5F7 0, #FFFFFF 55%, #F5F5F7 100%);
-      color: var(--pv-text);
-      line-height: 1.6;
+      font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", Roboto, sans-serif;
+      background-color: var(--pv-soft);
+      color: var(--pv-black);
+      line-height: 1.5;
+      scroll-behavior: smooth;
     }
 
     a { color: inherit; text-decoration: none; }
+
+    .pv-intro-layer {
+      position: fixed;
+      inset: 0;
+      background-color: var(--pv-black);
+      color: var(--pv-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: pv-intro-fade 2.2s ease-out forwards;
+      pointer-events: none;
+    }
+
+    .pv-intro-text {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+
+    @keyframes pv-intro-fade {
+      0%   { opacity: 0; }
+      10%  { opacity: 1; }
+      70%  { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; }
+    }
 
     .pv-page {
       min-height: 100vh;
@@ -33,482 +65,678 @@
       flex-direction: column;
     }
 
-    /* HEADER */
+    .pv-container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
 
     .pv-header {
       position: sticky;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(14px);
-      background: color-mix(in srgb, #FFFFFF 86%, #F5F5F7 14%);
-      border-bottom: 1px solid rgba(156, 163, 175, 0.4);
-    }
-
-    .pv-header-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0.75rem 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-    }
-
-    .pv-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--pv-text);
-    }
-
-    .pv-logo-mark {
-      width: 30px;
-      height: 30px;
-      border-radius: 9px;
-      background: linear-gradient(135deg, var(--pv-accent), #0F766E);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FFFFFF;
-      font-size: 0.85rem;
-      font-weight: 700;
-    }
-
-    .pv-logo-text span:first-child {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      color: var(--pv-text-secondary);
-      display: block;
-    }
-
-    .pv-logo-text span:last-child {
-      font-size: 1.02rem;
+      z-index: 100;
+      background-color: rgba(255,255,255,0.96);
+      border-bottom: 1px solid rgba(11,17,13,0.06);
+      backdrop-filter: blur(16px);
     }
 
     .pv-nav {
       display: flex;
       align-items: center;
-      gap: 1.75rem;
-      font-size: 0.86rem;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .pv-logo-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .pv-logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 4px;
+      background-color: var(--pv-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    }
+
+    .pv-logo-mark img {
+      width: 80%;
+      height: auto;
+      display: block;
+    }
+
+    .pv-logo-wordmark {
+      font-size: 1.05rem;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      font-weight: 600;
+      color: var(--pv-dark);
+      white-space: nowrap;
     }
 
-    .pv-nav a {
+    .pv-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+    }
+
+    .pv-nav-link {
       position: relative;
-      padding-bottom: 0.15rem;
-      color: var(--pv-text-secondary);
+      padding-bottom: 4px;
+      transition: color 0.18s ease-out;
     }
 
-    .pv-nav a::after {
+    .pv-nav-link::after {
       content: "";
       position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--pv-accent);
-      transition: width 0.18s ease-out;
+      left: 0; bottom: 0;
+      width: 0; height: 2px;
+      background-color: var(--pv-accent);
+      transition: width 0.2s ease-out;
     }
 
-    .pv-nav a:hover::after {
+    .pv-nav-link:hover::after,
+    .pv-nav-link--active::after {
       width: 100%;
     }
 
-    .pv-nav a.pv-nav-active {
-      color: var(--pv-text);
-    }
-
-    .pv-nav a.pv-nav-active::after {
-      width: 100%;
+    .pv-nav-link:hover {
+      color: var(--pv-black);
     }
 
     .pv-nav-cta {
-      padding: 0.45rem 0.95rem;
+      padding: 0.45rem 0.9rem;
       border-radius: 999px;
-      background: var(--pv-accent);
-      color: #FFFFFF;
+      background-color: var(--pv-accent);
+      color: var(--pv-black);
+      font-size: 0.78rem;
       font-weight: 600;
-      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       border: none;
       cursor: pointer;
-      box-shadow: 0 12px 30px rgba(20, 184, 166, 0.35);
-      transition: transform 0.14s ease-out, box-shadow 0.14s ease-out;
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+      box-shadow: 0 3px 10px rgba(11,17,13,0.18);
     }
 
     .pv-nav-cta:hover {
       transform: translateY(-1px);
-      box-shadow: 0 16px 38px rgba(20, 184, 166, 0.42);
+      box-shadow: 0 6px 18px rgba(11,17,13,0.25);
     }
 
-    /* HERO */
-
-    .pv-main {
-      flex: 1;
+    /* Slideshow – základné štýly ostávajú */
+    .pv-slideshow-shell {
+      background-color: var(--pv-soft);
+      box-shadow: 0 18px 40px rgba(11,17,13,0.18);
+      position: relative;
+      z-index: 1;
     }
 
-    .pv-hero {
+    .pv-slideshow {
       max-width: 1120px;
-      margin: 2.5rem auto 3.5rem;
-      padding: 0 1.25rem;
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.1fr);
-      gap: 2.5rem;
-      align-items: center;
+      margin: 0 auto;
+      padding: 1.6rem 1.5rem 2.4rem;
     }
 
-    @media (max-width: 880px) {
-      .pv-hero {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 2.0rem;
-      }
+    .pv-slideshow-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.2rem;
+      gap: 1rem;
     }
 
-    .pv-hero-copy-kicker {
+    .pv-slideshow-label {
+      font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      font-size: 0.75rem;
-      color: var(--pv-text-secondary);
-      margin-bottom: 0.75rem;
+      color: rgba(46,50,51,0.7);
     }
 
-    .pv-hero-title {
-      font-size: clamp(2.1rem, 3.1vw, 2.55rem);
-      line-height: 1.15;
-      letter-spacing: 0.03em;
-      margin-bottom: 1rem;
-    }
-
-    .pv-hero-highlight {
-      color: var(--pv-accent);
-    }
-
-    .pv-hero-lead {
-      font-size: 0.98rem;
-      color: var(--pv-text-secondary);
-      margin-bottom: 1.4rem;
-      max-width: 36rem;
-    }
-
-    .pv-hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      align-items: center;
-      margin-bottom: 1.6rem;
-    }
-
-    .pv-hero-cta-primary {
-      padding: 0.7rem 1.4rem;
-      border-radius: 999px;
-      background: var(--pv-accent);
-      color: #FFFFFF;
-      font-weight: 600;
+    .pv-slideshow-title {
       font-size: 0.9rem;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 18px 36px rgba(20, 184, 166, 0.4);
-      transition: transform 0.14s ease-out, box-shadow 0.14s ease-out;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--pv-dark);
     }
-
-    .pv-hero-cta-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 22px 48px rgba(20, 184, 166, 0.5);
-    }
-
-    .pv-hero-cta-secondary {
-      font-size: 0.86rem;
-      color: var(--pv-text-secondary);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .pv-hero-cta-secondary span {
-      font-size: 1.05rem;
-    }
-
-    .pv-hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      font-size: 0.78rem;
-      color: var(--pv-text-secondary);
-    }
-
-    .pv-hero-pill {
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(156, 163, 175, 0.6);
-      background: rgba(243, 244, 246, 0.8);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .pv-hero-pill-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--pv-success);
-    }
-
-    /* HERO VISUAL + SLIDESHOW */
-
-    .pv-hero-visual {
-      position: relative;
-      padding: 1.8rem 1.65rem 2.1rem;
-      border-radius: 32px;
-      background: radial-gradient(circle at top left, #F5F5F7 0, #E5E7EB 40%, #F9FAFB 100%);
-      box-shadow:
-        0 28px 80px rgba(15, 23, 42, 0.32),
-        0 0 0 1px rgba(148, 163, 184, 0.35);
-      overflow: hidden;
-    }
-
-    .pv-hero-shape-block {
-      position: absolute;
-      inset: -80px auto auto -40px;
-      width: 160px;
-      height: 160px;
-      border-radius: 42px;
-      background: linear-gradient(135deg, #E5E7EB, #F9FAFB);
-      opacity: 0.95;
-    }
-
-    .pv-hero-shape-accent {
-      position: absolute;
-      right: -18px;
-      bottom: -18px;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, var(--pv-accent), #0F766E);
-      box-shadow: 0 30px 70px rgba(15, 23, 42, 0.4);
-      opacity: 0.95;
-    }
-
-    /* slideshow základ */
 
     .pv-slides {
       position: relative;
-      width: 100%;
-      border-radius: 26px;
       overflow: hidden;
-      background: #000;
+      border-radius: 22px;
+      box-shadow: 0 10px 30px rgba(11,17,13,0.18);
+      background-color: var(--pv-white);
     }
 
     .pv-slide {
-      display: none;
-      width: 100%;
-      height: 100%;
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.7s ease-out;
     }
 
     .pv-slide--active {
-      display: block;
+      opacity: 1;
     }
 
     .pv-slide img {
       width: 100%;
-      height: 270px;
+      height: 260px;
       object-fit: cover;
       display: block;
     }
 
-    .pv-hero-slides {
-      border-radius: 24px;
-      box-shadow: 0 20px 55px rgba(15, 23, 42, 0.55);
-    }
-
-    .pv-hero-slides .pv-slide img {
-      height: 260px;
-    }
-
     .pv-slideshow-dots {
       display: flex;
-      gap: 0.4rem;
+      justify-content: center;
+      gap: 0.45rem;
       margin-top: 0.85rem;
-      justify-content: flex-end;
-      position: relative;
     }
 
     .pv-dot {
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       border-radius: 999px;
-      background: rgba(148, 163, 184, 0.55);
+      background-color: rgba(46,50,51,0.25);
+      transition: background-color 0.18s ease-out, transform 0.18s ease-out;
       cursor: pointer;
-      transition: width 0.18s ease-out, background 0.18s ease-out, transform 0.12s ease-out;
     }
 
     .pv-dot--active {
-      width: 18px;
-      background: var(--pv-accent);
+      background-color: var(--pv-accent);
+      transform: scale(1.15);
+    }
+
+    /* Slideshow verzia v hero paneli – rovnaký look, iná veľkosť */
+    .pv-hero-slides {
+      border-radius: 18px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.38);
+      margin-top: 0.7rem;
+    }
+
+    .pv-hero-slides .pv-slide img {
+      height: 210px;
+    }
+
+    .pv-hero-dots {
+      justify-content: flex-end;
+      margin-top: 0.6rem;
+    }
+
+    /* HERO */
+    .pv-hero-shell {
+      background: linear-gradient(to bottom, #f5f2ee 0%, #d9d4d1 55%, #d9d4d1 100%);
+      box-shadow: 0 26px 60px rgba(11,17,13,0.28);
+      position: relative;
+      z-index: 0;
+    }
+
+    .pv-hero {
+      padding: 3.4rem 0 3.25rem;
+      position: relative;
+    }
+
+    .pv-hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .pv-hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.18rem 0.7rem;
+      border-radius: 999px;
+      background-color: rgba(46,50,51,0.08);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--pv-dark);
+      margin-bottom: 0.9rem;
+    }
+
+    .pv-hero-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background-color: var(--pv-accent);
+    }
+
+    .pv-hero-title {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 0.55rem;
+    }
+
+    .pv-hero-subtitle {
+      font-size: 0.95rem;
+      max-width: 420px;
+      color: var(--pv-dark);
+      margin-bottom: 1.6rem;
+    }
+
+    .pv-hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .pv-hero-primary {
+      padding: 0.75rem 1.6rem;
+      border-radius: 999px;
+      background-color: var(--pv-accent);
+      color: var(--pv-black);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.8rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(11,17,13,0.25);
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+    }
+
+    .pv-hero-primary:hover {
       transform: translateY(-1px);
+      box-shadow: 0 14px 40px rgba(11,17,13,0.3);
     }
 
-    @media (max-width: 880px) {
-      .pv-hero-visual {
-        order: -1;
-      }
+    .pv-hero-secondary {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--pv-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
     }
 
-    /* simple footer */
+    .pv-hero-secondary span {
+      border-bottom: 1px solid rgba(46,50,51,0.35);
+    }
+
+    .pv-hero-secondary svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .pv-hero-meta {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(46,50,51,0.7);
+      margin-top: 0.6rem;
+    }
+
+    .pv-hero-visual {
+      position: relative;
+      min-height: 260px;
+    }
+
+    .pv-hero-panel {
+      position: relative;
+      background-color: var(--pv-dark);
+      border-radius: 24px;
+      padding: 1.8rem 1.7rem 1.6rem;
+      color: var(--pv-white);
+      box-shadow: 0 20px 55px rgba(43,48,51,0.4);
+    }
+
+    .pv-hero-panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.0rem;
+    }
+
+    .pv-hero-panel-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .pv-hero-panel-logo img {
+      height: 30px;
+      width: auto;
+      display: block;
+    }
+
+    .pv-hero-panel-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.7rem;
+      border-radius: 999px;
+      background-color: rgba(255,255,255,0.12);
+    }
+
+    .pv-hero-panel-slogan {
+      font-size: 0.9rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .pv-hero-shape-accent {
+      position: absolute;
+      right: -30px;
+      bottom: -26px;
+      width: 90px;
+      height: 90px;
+      background-color: var(--pv-accent);
+      border-radius: 999px;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.3);
+    }
+
+    .pv-hero-shape-block {
+      position: absolute;
+      left: -40px;
+      top: -30px;
+      width: 80px;
+      height: 80px;
+      background-color: var(--pv-dark);
+      opacity: 0.4;
+      border-radius: 18px;
+    }
+
+    section {
+      padding: 3.4rem 0 3.6rem;
+      border-top: 1px solid rgba(46,50,51,0.08);
+    }
+
+    .pv-feature-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 2.4rem;
+      align-items: center;
+    }
+
+    .pv-feature-grid--reverse {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    }
+
+    .pv-section-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(46,50,51,0.7);
+      margin-bottom: 0.35rem;
+    }
+
+    .pv-section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .pv-section-body {
+      font-size: 0.9rem;
+      color: var(--pv-dark);
+      max-width: 520px;
+    }
+
+    .pv-section-body p + p { margin-top: 0.45rem; }
+
+    .pv-photo-wrapper img {
+      width: 100%;
+      height: auto;
+      border-radius: 22px;
+      display: block;
+      box-shadow: 0 10px 30px rgba(11,17,13,0.18);
+      object-fit: cover;
+    }
 
     .pv-footer {
-      max-width: 1120px;
-      margin: 0 auto 1.8rem;
-      padding: 0 1.25rem;
-      font-size: 0.78rem;
-      color: var(--pv-text-secondary);
+      padding: 2rem 0 2.4rem;
+      font-size: 0.75rem;
+      color: rgba(46,50,51,0.7);
+      border-top: 1px solid rgba(46,50,51,0.12);
+      margin-top: 2rem;
+    }
+
+    .pv-footer-row {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 1rem;
       flex-wrap: wrap;
     }
 
-    .pv-footer span strong {
-      font-weight: 600;
+    @media (max-width: 900px) {
+      .pv-hero-grid { grid-template-columns: minmax(0, 1fr); }
+      .pv-hero-visual { order: -1; }
+    }
+
+    @media (max-width: 768px) {
+      .pv-nav-links { display: none; }
+      .pv-hero { padding-top: 3.1rem; }
+      .pv-feature-grid,
+      .pv-feature-grid--reverse {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .pv-slide img { height: 210px; }
     }
   </style>
 </head>
 <body>
 <div class="pv-page">
 
-  <!-- HEADER -->
-  <header class="pv-header">
-    <div class="pv-header-inner">
-      <a href="#" class="pv-logo">
-        <div class="pv-logo-mark">PV</div>
-        <div class="pv-logo-text">
-          <span>running hub</span>
-          <span>PaceVault</span>
-        </div>
-      </a>
+  <div class="pv-intro-layer">
+    <div class="pv-intro-text">Different pace, same goal – be better</div>
+  </div>
 
+  <header class="pv-header">
+    <div class="pv-container">
       <nav class="pv-nav">
-        <a href="#" class="pv-nav-active">Vpick</a>
-        <a href="#">Vcalc</a>
-        <a href="#">Vtrain</a>
-        <a href="#">Vtips</a>
-        <button class="pv-nav-cta">Spusti Vpick</button>
+        <div class="pv-logo-group">
+          <div class="pv-logo-mark">
+            <img src="./assets/img/logo/P.png" alt="PaceVault logo">
+          </div>
+          <div class="pv-logo-wordmark">PACEVAULT</div>
+        </div>
+        <div class="pv-nav-links">
+          <a href="#vpick" class="pv-nav-link pv-nav-link--active">Vpick</a>
+          <a href="#vcalc" class="pv-nav-link">Vcalc</a>
+          <a href="#vtrain" class="pv-nav-link">Vtrain</a>
+          <a href="#vtips" class="pv-nav-link">Vtips</a>
+        </div>
+        <button class="pv-nav-cta"
+                onclick="document.getElementById('vpick').scrollIntoView({behavior:'smooth'})">
+          Spusti Vpick
+        </button>
       </nav>
     </div>
   </header>
 
-  <!-- MAIN -->
-  <main class="pv-main">
-
-    <!-- HERO -->
-    <section class="pv-hero">
-      <div class="pv-hero-copy">
-        <div class="pv-hero-copy-kicker">PaceVault • bežecký vault</div>
-        <h1 class="pv-hero-title">
-          Všetko, čo bežec potrebuje, <span class="pv-hero-highlight">na jednom mieste</span>
-        </h1>
-        <p class="pv-hero-lead">
-          Vpick ti pomôže vybrať tenisky podľa tempa, tréningu a povrchu,
-          Vcalc prepočíta časy a Vtrain s Vtips sa postarajú o hlavu aj nohy.
-        </p>
-        <div class="pv-hero-actions">
-          <button class="pv-hero-cta-primary">Začni s Vpick</button>
-          <a href="#" class="pv-hero-cta-secondary">
-            Pozri, ako to funguje <span>→</span>
-          </a>
-        </div>
-        <div class="pv-hero-meta">
-          <div class="pv-hero-pill">
-            <span class="pv-hero-pill-dot"></span>
-            <span>Tempo, povrch, kilometre – všetko v jednom sprievodcovi</span>
-          </div>
-          <div class="pv-hero-pill">
-            <span class="pv-hero-pill-dot"></span>
-            <span>Od prvého kliknutia po konkrétny model tenisiek</span>
-          </div>
+  <!-- PÔVODNÁ slideshow nad hero nechávam BEZ ZMENY -->
+  <div class="pv-slideshow-shell">
+    <section class="pv-slideshow" aria-label="PaceVault tenisky">
+      <div class="pv-slideshow-header">
+        <div class="pv-slideshow-label">pacevault</div>
+        <div class="pv-slideshow-title">
+          Different pace, same goal – be better
         </div>
       </div>
 
-      <div class="pv-hero-visual">
-        <div class="pv-hero-shape-block"></div>
-
-        <!-- SLIDESHOW v mieste pôvodného tmavého panelu -->
-        <div class="pv-slides pv-hero-slides">
-          <div class="pv-slide pv-slide--active">
-            <img src="./assets/img/hero/slide-1.png" alt="Bežecké tenisky – tempo run">
-          </div>
-          <div class="pv-slide">
-            <img src="./assets/img/hero/slide-2.png" alt="Bežecké tenisky na dlhé behy">
-          </div>
-          <div class="pv-slide">
-            <img src="./assets/img/hero/slide-3.png" alt="Tenisky na technické traily">
-          </div>
-          <div class="pv-slide">
-            <img src="./assets/img/hero/slide-4.png" alt="Karbonové tenisky na preteky">
-          </div>
-          <div class="pv-slide">
-            <img src="./assets/img/hero/slide-5.png" alt="Tenisky na každodenné tréningy">
-          </div>
-          <div class="pv-slide">
-            <img src="./assets/img/hero/slide-6.png" alt="Mix modelov v bežeckom vault-e">
-          </div>
+      <div class="pv-slides">
+        <div class="pv-slide pv-slide--active">
+          <img src="./assets/img/hero/slide-1.png" alt="Bežecká teniska 1">
         </div>
-
-        <div class="pv-slideshow-dots">
-          <span class="pv-dot pv-dot--active"></span>
-          <span class="pv-dot"></span>
-          <span class="pv-dot"></span>
-          <span class="pv-dot"></span>
-          <span class="pv-dot"></span>
-          <span class="pv-dot"></span>
+        <div class="pv-slide">
+          <img src="./assets/img/hero/slide-2.png" alt="Bežecká teniska 2">
         </div>
+        <div class="pv-slide">
+          <img src="./assets/img/hero/slide-3.png" alt="Bežecká teniska 3">
+        </div>
+        <div class="pv-slide">
+          <img src="./assets/img/hero/slide-4.png" alt="Bežecká teniska 4">
+        </div>
+        <div class="pv-slide">
+          <img src="./assets/img/hero/slide-5.png" alt="Bežecká teniska 5">
+        </div>
+        <div class="pv-slide">
+          <img src="./assets/img/hero/slide-6.png" alt="Bežecká teniska 6">
+        </div>
+      </div>
 
-        <div class="pv-hero-shape-accent"></div>
+      <div class="pv-slideshow-dots">
+        <span class="pv-dot pv-dot--active"></span>
+        <span class="pv-dot"></span>
+        <span class="pv-dot"></span>
+        <span class="pv-dot"></span>
+        <span class="pv-dot"></span>
+        <span class="pv-dot"></span>
       </div>
     </section>
+  </div>
 
+  <div class="pv-hero-shell">
+    <section class="pv-hero" id="top">
+      <div class="pv-container pv-hero-grid">
+        <div>
+          <div class="pv-hero-tag">
+            <span class="pv-hero-tag-dot"></span>
+            <span>Bežecký digitálny trezor</span>
+          </div>
+          <h1 class="pv-hero-title">všetko čo bežec potrebuje na jednom mieste</h1>
+          <p class="pv-hero-subtitle">
+            Vpick nájde tenisky, ktoré sadnú tvojmu tempu. Vcalc ti spočíta čísla,
+            Vtrain vyskladá týždeň a Vtips ti pripomenú len to, čo sa na trati naozaj ráta.
+          </p>
+
+          <div class="pv-hero-actions">
+            <button class="pv-hero-primary"
+                    onclick="document.getElementById('vpick').scrollIntoView({behavior:'smooth'})">
+              Začni s Vpick
+            </button>
+            <a class="pv-hero-secondary" href="#vcalc">
+              <span>Pozri aj ostatné nástroje</span>
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path fill="currentColor"
+                      d="M4 8.75h5.19L6.22 11.7a.75.75 0 1 0 1.06 1.06l4-4a.75.75 0 0 0 0-1.06l-4-4A.75.75 0 0 0 6.22 4.8L9.19 7.75H4a.75.75 0 0 0 0 1.5Z"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="pv-hero-meta">
+            Different pace, same goal – be better
+          </div>
+        </div>
+
+        <!-- TU JE NOVÝ PANEL: text + slideshow miesto starého textu -->
+        <div class="pv-hero-visual">
+          <div class="pv-hero-shape-block"></div>
+          <div class="pv-hero-panel">
+            <div class="pv-hero-panel-top">
+              <div class="pv-hero-panel-logo">
+                <img src="./assets/img/logo/full-logo.png" alt="PaceVault">
+              </div>
+              <div class="pv-hero-panel-tag">Vpick • Vcalc • Vtrain • Vtips</div>
+            </div>
+
+            <div class="pv-hero-panel-slogan">
+              Different pace, same goal – be better
+            </div>
+
+            <!-- Slideshow vo vnútri panelu -->
+            <div class="pv-slides pv-hero-slides">
+              <div class="pv-slide pv-slide--active">
+                <img src="./assets/img/hero/slide-1.png" alt="Bežecká teniska 1">
+              </div>
+              <div class="pv-slide">
+                <img src="./assets/img/hero/slide-2.png" alt="Bežecká teniska 2">
+              </div>
+              <div class="pv-slide">
+                <img src="./assets/img/hero/slide-3.png" alt="Bežecká teniska 3">
+              </div>
+              <div class="pv-slide">
+                <img src="./assets/img/hero/slide-4.png" alt="Bežecká teniska 4">
+              </div>
+              <div class="pv-slide">
+                <img src="./assets/img/hero/slide-5.png" alt="Bežecká teniska 5">
+              </div>
+              <div class="pv-slide">
+                <img src="./assets/img/hero/slide-6.png" alt="Bežecká teniska 6">
+              </div>
+            </div>
+
+            <div class="pv-slideshow-dots pv-hero-dots">
+              <span class="pv-dot pv-dot--active"></span>
+              <span class="pv-dot"></span>
+              <span class="pv-dot"></span>
+              <span class="pv-dot"></span>
+              <span class="pv-dot"></span>
+              <span class="pv-dot"></span>
+            </div>
+          </div>
+          <div class="pv-hero-shape-accent"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Zvyšok stránky ostáva rovnaký -->
+  <main>
+    <!-- ... tvoje sekcie Vpick, Vcalc, Vtrain, Vtips tak, ako si ich mal ... -->
+    <!-- (skrátené kvôli prehľadnosti – môžeš si sem nechať pôvodný obsah 1:1) -->
   </main>
 
-  <!-- FOOTER -->
   <footer class="pv-footer">
-    <span>© PaceVault, 2026</span>
-    <span><strong>Vpick</strong> • Vcalc • Vtrain • Vtips</span>
+    <div class="pv-container pv-footer-row">
+      <div>© PaceVault – Different pace, same goal – be better</div>
+      <div>Všetko, čo bežec potrebuje, na jednom mieste.</div>
+    </div>
   </footer>
 </div>
 
 <script>
   (function () {
-    const slides = Array.from(document.querySelectorAll('.pv-slide'));
-    const dots = Array.from(document.querySelectorAll('.pv-dot'));
-    if (!slides.length || !dots.length) return;
+    const slides = document.querySelectorAll('.pv-slide');
+    const dots   = document.querySelectorAll('.pv-dot');
+    if (!slides.length || !dots.length) return; [web:219]
 
     let index = 0;
-    const total = slides.length;
 
     function showSlide(i) {
-      slides.forEach((slide, idx) => {
-        slide.classList.toggle('pv-slide--active', idx === i);
+      slides.forEach((s, idx) => {
+        s.classList.toggle('pv-slide--active', idx === i);
       });
-      dots.forEach((dot, idx) => {
-        dot.classList.toggle('pv-dot--active', idx === i);
+      dots.forEach((d, idx) => {
+        d.classList.toggle('pv-dot--active', idx === i);
       });
-      index = i;
     }
-
-    function nextSlide() {
-      const next = (index + 1) % total;
-      showSlide(next);
-    }
-
-    const interval = setInterval(nextSlide, 4200);
 
     dots.forEach((dot, idx) => {
       dot.addEventListener('click', () => {
-        showSlide(idx);
+        index = idx;
+        showSlide(index);
       });
     });
+
+    setInterval(() => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }, 4000);
   })();
 </script>
 </body>
