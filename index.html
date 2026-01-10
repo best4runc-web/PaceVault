@@ -31,7 +31,6 @@
 
     a { color: inherit; text-decoration: none; }
 
-    /* Intro overlay (môžeš vypnúť odstránením celého bloku) */
     .pv-intro-layer {
       position: fixed;
       inset: 0;
@@ -73,7 +72,6 @@
       padding: 0 1.5rem;
     }
 
-    /* Header / nav */
     .pv-header {
       position: sticky;
       top: 0;
@@ -447,7 +445,6 @@
       border-radius: 18px;
     }
 
-    /* Sekcie – info bloky */
     section {
       padding: 3.4rem 0 3.6rem;
       border-top: 1px solid rgba(46,50,51,0.08);
@@ -497,7 +494,6 @@
       object-fit: cover;
     }
 
-    /* Footer */
     .pv-footer {
       padding: 2rem 0 2.4rem;
       font-size: 0.75rem;
@@ -533,12 +529,10 @@
 <body>
 <div class="pv-page">
 
-  <!-- Intro overlay -->
   <div class="pv-intro-layer">
     <div class="pv-intro-text">Different pace, same goal – be better</div>
   </div>
 
-  <!-- Header -->
   <header class="pv-header">
     <div class="pv-container">
       <nav class="pv-nav">
@@ -562,7 +556,7 @@
     </div>
   </header>
 
-  <!-- Slideshow 6 fotiek -->
+  <!-- Slideshow 6 fotiek (PNG) -->
   <div class="pv-slideshow-shell">
     <section class="pv-slideshow" aria-label="PaceVault tenisky">
       <div class="pv-slideshow-header">
@@ -574,22 +568,22 @@
 
       <div class="pv-slides">
         <div class="pv-slide pv-slide--active">
-          <img src="./assets/img/hero/slide-1.jpg" alt="Bežecká teniska 1">
+          <img src="./assets/img/hero/slide-1.png" alt="Bežecká teniska 1">
         </div>
         <div class="pv-slide">
-          <img src="./assets/img/hero/slide-2.jpg" alt="Bežecká teniska 2">
+          <img src="./assets/img/hero/slide-2.png" alt="Bežecká teniska 2">
         </div>
         <div class="pv-slide">
-          <img src="./assets/img/hero/slide-3.jpg" alt="Bežecká teniska 3">
+          <img src="./assets/img/hero/slide-3.png" alt="Bežecká teniska 3">
         </div>
         <div class="pv-slide">
-          <img src="./assets/img/hero/slide-4.jpg" alt="Bežecká teniska 4">
+          <img src="./assets/img/hero/slide-4.png" alt="Bežecká teniska 4">
         </div>
         <div class="pv-slide">
-          <img src="./assets/img/hero/slide-5.jpg" alt="Bežecká teniska 5">
+          <img src="./assets/img/hero/slide-5.png" alt="Bežecká teniska 5">
         </div>
         <div class="pv-slide">
-          <img src="./assets/img/hero/slide-6.jpg" alt="Bežecká teniska 6">
+          <img src="./assets/img/hero/slide-6.png" alt="Bežecká teniska 6">
         </div>
       </div>
 
@@ -604,7 +598,6 @@
     </section>
   </div>
 
-  <!-- Hero blok – dôraz na Vpick -->
   <div class="pv-hero-shell">
     <section class="pv-hero" id="top">
       <div class="pv-container pv-hero-grid">
@@ -662,7 +655,6 @@
   </div>
 
   <main>
-    <!-- Vpick blok – hlavná služba -->
     <section id="vpick">
       <div class="pv-container pv-feature-grid">
         <div>
@@ -683,7 +675,6 @@
       </div>
     </section>
 
-    <!-- Vcalc blok – doplnková služba -->
     <section id="vcalc">
       <div class="pv-container pv-feature-grid pv-feature-grid--reverse">
         <div class="pv-photo-wrapper">
@@ -706,7 +697,6 @@
       </div>
     </section>
 
-    <!-- Vtrain blok – doplnková služba -->
     <section id="vtrain">
       <div class="pv-container pv-feature-grid">
         <div>
@@ -729,7 +719,6 @@
       </div>
     </section>
 
-    <!-- Vtips blok – doplnková služba -->
     <section id="vtips">
       <div class="pv-container pv-feature-grid pv-feature-grid--reverse">
         <div class="pv-photo-wrapper">
@@ -759,7 +748,6 @@
   </footer>
 </div>
 
-<!-- Slideshow skript -->
 <script>
   (function () {
     const slides = document.querySelectorAll('.pv-slide');
